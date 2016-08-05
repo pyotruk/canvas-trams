@@ -1,0 +1,15 @@
+#main {
+    max-width: 1170px;
+    margin: auto;
+    overflow: hidden;
+}
+
+#canvas {
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+#controls {
+    float: right;
+}

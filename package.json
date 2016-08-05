@@ -1,0 +1,21 @@
+{
+  "name": "berlin-trams",
+  "version": "1.0.0",
+  "description": "Berlin Trams",
+  "author": "pyotruk",
+  "license": "ISC",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/pyotruk/berlin-trams.git"
+  },
+  "main": "app/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0"
+  },
+  "devDependencies": {}
+}
