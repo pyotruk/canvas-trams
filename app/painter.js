@@ -1,7 +1,10 @@
 var Painter = function (ctx) {
     var self = this;
 
-    ctx.moveTo(250, 250); // TODO move center coordinates in config
+    ctx.moveTo(
+        __config__.canvas.center.x, 
+        __config__.canvas.center.y
+    );
 
     var paintNode = function (point) {
         ctx.beginPath();

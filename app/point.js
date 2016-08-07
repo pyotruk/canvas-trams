@@ -6,11 +6,7 @@ var Point = function (r, fi) {
     var self = this;
 
     const EPS = 0.11;
-    const AFFINE_MATRIX = [
-        [250/2, 0, 250],
-        [0, -250/2, 250],
-        [0, 0, 1]
-    ];
+    const AFFINE_MATRIX = __config__.canvas.affineMatrix;
 
     self.r = r;
     self.fi = fi;
