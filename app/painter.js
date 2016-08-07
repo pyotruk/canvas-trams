@@ -7,9 +7,7 @@ var Painter = function (ctx) {
 
     var paintNode = function (point) {
         ctx.fillStyle = __config__.canvas.stops.color;
-        ctx.beginPath();
-        ctx.arc(point.x, point.y, __config__.canvas.stops.radius, 0, 2 * Math.PI);
-        ctx.fill();
+        PainterUtils.fillCircle(ctx, point.x, point.y, __config__.canvas.stops.radius);
         ctx.moveTo(currentPos.x, currentPos.y);
 
         console.log('Painter >> node painted: [' + point.x + ', ' + point.y + ']');
@@ -43,15 +41,15 @@ var Painter = function (ctx) {
         var point = tram.currentPos.toCanvasCoordinates();
 
         ctx.fillStyle = __config__.canvas.trams.color;
-        ctx.beginPath();
-        ctx.arc(point.x, point.y, __config__.canvas.trams.radius, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.moveTo(currentPos.x, currentPos.y);
+        PainterUtils.fillCircle(ctx, point.x, point.y, __config__.canvas.trams.radius);
+        ctx.moveTo(point.x, point.y);
 
         console.log('Painter >> tram painted: ' + tram);
     };
 
     self.repaint = function (trams) {
+        PainterUtils.clearAll(ctx);
+
         for (var i in trams) {
             if (!trams.hasOwnProperty(i)) continue;
 
