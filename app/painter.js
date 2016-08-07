@@ -6,8 +6,9 @@ var Painter = function (ctx) {
     ctx.moveTo(currentPos.x, currentPos.y);
 
     var paintNode = function (point) {
+        ctx.fillStyle = __config__.canvas.stops.color;
         ctx.beginPath();
-        ctx.arc(point.x, point.y, __config__.canvas.circleRadius, 0, 2 * Math.PI);
+        ctx.arc(point.x, point.y, __config__.canvas.stops.radius, 0, 2 * Math.PI);
         ctx.fill();
         ctx.moveTo(currentPos.x, currentPos.y);
 
@@ -39,7 +40,15 @@ var Painter = function (ctx) {
     };
 
     var paintTram = function (tram) {
+        var point = tram.currentPos.toCanvasCoordinates();
 
+        ctx.fillStyle = __config__.canvas.trams.color;
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, __config__.canvas.trams.radius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.moveTo(currentPos.x, currentPos.y);
+
+        console.log('Painter >> tram painted: ' + tram);
     };
 
     self.repaint = function (trams) {
@@ -48,7 +57,7 @@ var Painter = function (ctx) {
 
             var tram = trams[i];
             paintRoute(tram.route);
-            paintTram(tram.currentPos);
+            paintTram(tram);
         }
     };
 };

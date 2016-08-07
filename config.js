@@ -41,6 +41,16 @@ var __config__ = {
             x: 250,
             y: 250
         },
-        circleRadius: 6
+        stops: {
+            radius: 6,
+            color: "#333"
+        },
+        trams: {
+            radius: 10,
+            color: "#ff3333"
+        }
+    },
+    point: {
+        equalsEps: 0.01
     }
 };

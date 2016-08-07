@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
     painter.repaint(trams);
     console.log('Init finished.');
 
-    // TODO
-    // trams[0].moveNext();
+    // TODO Dispacther
+    trams[0].moveNext();
+    trams[1].moveNext();
+    trams[2].moveNext();
 });

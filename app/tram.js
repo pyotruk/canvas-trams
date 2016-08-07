@@ -13,7 +13,7 @@ var Tram = function (tramData, repaint) {
     self.currentPos = self.route.getFirstStop();
 
     self.toString = function () {
-        return 'Tram#' + self.id;
+        return 'Tram#' + self.id + '{pos=' + self.currentPos + '}';
     };
 
     self.moveNext = function () {

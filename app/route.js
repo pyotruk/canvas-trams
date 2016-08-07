@@ -9,7 +9,7 @@
 var Route = function (id, nodes) {
     var self = this;
 
-    const STEP = 0.1;
+    const STEP = -0.1; // TODO calc next stop direction
 
     self.id = id;
     self.nodes = nodes;
