@@ -1,4 +1,4 @@
-var __utils__ = {
+var PointUtils = {
 
     polarToCartesian: function (polarPoint) {
         return {

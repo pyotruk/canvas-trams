@@ -11,10 +11,10 @@ var Point = function (r, fi) {
     self.r = r;
     self.fi = fi;
 
-    __utils__.normalizePolar(self, EPS);
+    PointUtils.normalizePolar(self, EPS);
 
     self.equals = function (point) {
-        return __utils__.arePointsEqual(self, point, EPS);
+        return PointUtils.arePointsEqual(self, point, EPS);
     };
 
     self.toString = function () {
@@ -22,8 +22,8 @@ var Point = function (r, fi) {
     };
 
     self.toCanvasCoordinates = function () {
-        var canvasPoint = __utils__.polarToCartesian(self);
-        canvasPoint = __utils__.affine(canvasPoint, AFFINE_MATRIX);
+        var canvasPoint = PointUtils.polarToCartesian(self);
+        canvasPoint = PointUtils.affine(canvasPoint, AFFINE_MATRIX);
         return canvasPoint;
     };
 };
