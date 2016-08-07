@@ -1,15 +1,15 @@
 var Painter = function (ctx) {
     var self = this;
 
-    ctx.moveTo(
-        __config__.canvas.center.x, 
-        __config__.canvas.center.y
-    );
+    var currentPos = __config__.canvas.center;
+
+    ctx.moveTo(currentPos.x, currentPos.y);
 
     var paintNode = function (point) {
         ctx.beginPath();
-        ctx.arc(point.x, point.y, 6, 0 , 2*Math.PI);
-        ctx.stroke();
+        ctx.arc(point.x, point.y, __config__.canvas.circleRadius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.moveTo(currentPos.x, currentPos.y);
 
         console.log('Painter >> node painted: [' + point.x + ', ' + point.y + ']');
     };
@@ -17,6 +17,7 @@ var Painter = function (ctx) {
     var paintEdge = function (point) {
         ctx.lineTo(point.x, point.y);
         ctx.stroke();
+        currentPos = point;
 
         console.log('Painter >> edge painted: lineTo [' + point.x + ', ' + point.y + ']');
     };
