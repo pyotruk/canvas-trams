@@ -3,17 +3,34 @@ var Painter = function (ctx) {
 
     ctx.moveTo(250, 250); // TODO move center coordinates in config
 
-    var paintNode = function (node) {
-        var point = __utils__.polarToCartesian(node);
+    var paintNode = function (point) {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 6, 0 , 2*Math.PI);
+        ctx.stroke();
+
+        console.log('Painter >> node painted: [' + point.x + ', ' + point.y + ']');
+    };
+
+    var paintEdge = function (point) {
         ctx.lineTo(point.x, point.y);
         ctx.stroke();
+
+        console.log('Painter >> edge painted: lineTo [' + point.x + ', ' + point.y + ']');
     };
 
     var paintRoute = function (route) {
+        console.log('Painter >> ' + route);
+
+        var point = route.nodes[0].toCanvasCoordinates();
+        ctx.moveTo(point.x, point.y);
+
         for (var i in route.nodes) {
             if (!route.nodes.hasOwnProperty(i)) continue;
 
-            paintNode(route.nodes[i]);
+            point = route.nodes[i].toCanvasCoordinates();
+
+            paintEdge(point);
+            paintNode(point);
         }
     };
 

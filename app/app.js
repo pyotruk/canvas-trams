@@ -5,19 +5,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var painter = new Painter(ctx);
 
-    var trams = __config__.routes.map(function (route) {
+    var trams = __config__.trams.map(function (tram) {
         return new Tram(
-            new Route(route.map(function (point) {
-                return new Point(point.r, point.fi);
-            })),
+            tram,
             function () {
                 painter.repaint(trams);
             }
         );
     });
 
+    painter.repaint(trams);
     console.log('Init finished.');
 
     // TODO
-    trams[0].moveNext();
+    // trams[0].moveNext();
 });

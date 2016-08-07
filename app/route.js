@@ -2,15 +2,21 @@
  * Tram route.
  * Routes is edge of the graph.
  *
+ * @param id
  * @param nodes {Array}
  */
 
-var Route = function (nodes) {
+var Route = function (id, nodes) {
     var self = this;
 
     const STEP = 0.1;
 
+    self.id = id;
     self.nodes = nodes;
+
+    self.toString = function () {
+        return 'Route#' + self.id;
+    };
 
     self.getFirstStop = function () {
         return self.nodes[0];
