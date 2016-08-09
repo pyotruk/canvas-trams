@@ -78,14 +78,14 @@ describe('point-utils', function () {
             new Point(1, Math.PI),
             new Point(1, 0),
             eps
-        )).toEqual(false);
+        )).toEqual(true);
 
         expect(PointUtils.isPolarPointBelongsToLine(
             new Point(1, Math.PI),
             new Point(1, Math.PI),
             new Point(1, 0),
             eps
-        )).toEqual(false);
+        )).toEqual(true);
 
         expect(PointUtils.isPolarPointBelongsToLine(
             new Point(0, 0),
@@ -100,6 +100,20 @@ describe('point-utils', function () {
             new Point(1, 5 / 3 * Math.PI),
             eps
         )).toEqual(true);
+
+        expect(PointUtils.isPolarPointBelongsToLine(
+            new Point(1.1, 0),
+            new Point(1, Math.PI),
+            new Point(1, 0),
+            eps
+        )).toEqual(false);
+
+        expect(PointUtils.isPolarPointBelongsToLine(
+            new Point(1.1, Math.PI),
+            new Point(1, Math.PI),
+            new Point(1, 0),
+            eps
+        )).toEqual(false);
     })
 
 });

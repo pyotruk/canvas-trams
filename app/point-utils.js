@@ -28,6 +28,8 @@ var PointUtils = {
      * @returns {boolean}
      */
     arePointsEqual: function (p1, p2, eps) {
+        if (PointUtils.isPole(p1, eps) && PointUtils.isPole(p2, eps)) return true;
+
         return (Math.abs(p1.r - p2.r) < eps) &&
             (Math.abs(p1.fi - p2.fi) < eps);
     },
@@ -47,7 +49,7 @@ var PointUtils = {
             polarPoint.r = Math.abs(polarPoint.r);
             polarPoint.fi += Math.PI;
         }
-        
+
         polarPoint.fi = polarPoint.fi % (2 * Math.PI);
 
         return polarPoint;
@@ -63,7 +65,7 @@ var PointUtils = {
     },
 
     /**
-     * Checks if point belong to line excluding ends.
+     * Checks if point belong to line including ends.
      * It works for lines passed through pole only.
      * @param point [polar]
      * @param lineStart - point of line start [polar]
@@ -74,9 +76,9 @@ var PointUtils = {
         if (PointUtils.isPole(point, eps)) return true;
 
         if (Math.abs(point.fi - lineStart.fi) <= eps) {
-            return point.r < lineStart.r;
+            return point.r <= lineStart.r;
         } else if (Math.abs(point.fi - lineEnd.fi) <= eps) {
-            return point.r < lineEnd.r;
+            return point.r <= lineEnd.r;
         }
         return false;
     }

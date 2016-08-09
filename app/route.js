@@ -15,7 +15,7 @@ var Route = function (id, nodes) {
     self.id = id;
     self.nodes = nodes;
 
-    var direction = 1;
+    var direction = -1;
 
     self.toString = function () {
         return 'Route#' + self.id;
@@ -49,7 +49,6 @@ var Route = function (id, nodes) {
         );
         if (isEnd(newPos)) {
             direction = -1 * direction;
-            newPos = currentPos;
             console.log(self + ' >> direction changed because isEnd.');
         }
         if (PointUtils.isPole(newPos, EPS)) {

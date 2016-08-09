@@ -20,7 +20,7 @@ var Tram = function (tramData, repaint) {
         var interval = setInterval(function () {
 
             self.currentPos = self.route.move(self.currentPos);
-            console.log(self + ' >> current pos ' + self.currentPos.toString());
+            console.log(self + ' >> moved.');
 
             repaint();
 

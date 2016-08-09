@@ -25,9 +25,9 @@ var __config__ = {
             id: 3,
             passengers: 42,
             route: [
-                {r: 1.0, fi: 2 / 3 * Math.PI},
+                {r: 1.0, fi: 5 / 3 * Math.PI},
                 {r: 0.0, fi: 0.0},
-                {r: 1.0, fi: 5 / 3 * Math.PI}
+                {r: 1.0, fi: 2 / 3 * Math.PI}
             ]
         }
     ],

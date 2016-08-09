@@ -18,6 +18,7 @@ var Point = function (r, fi) {
     };
 
     self.equals = function (point) {
+        PointUtils.normalizePolar(point, EPS);
         return PointUtils.arePointsEqual(self, point, EPS);
     };
 

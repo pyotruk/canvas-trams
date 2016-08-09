@@ -9,21 +9,15 @@ var Painter = function (ctx) {
         ctx.fillStyle = __config__.canvas.stops.color;
         PainterUtils.fillCircle(ctx, point.x, point.y, __config__.canvas.stops.radius);
         ctx.moveTo(currentPos.x, currentPos.y);
-
-        console.log('Painter >> node painted: [' + point.x + ', ' + point.y + ']');
     };
 
     var paintEdge = function (point) {
         ctx.lineTo(point.x, point.y);
         ctx.stroke();
         currentPos = point;
-
-        console.log('Painter >> edge painted: lineTo [' + point.x + ', ' + point.y + ']');
     };
 
     var paintRoute = function (route) {
-        console.log('Painter >> ' + route);
-
         var point = route.nodes[0].toCanvasCoordinates();
         ctx.moveTo(point.x, point.y);
 
@@ -43,8 +37,6 @@ var Painter = function (ctx) {
         ctx.fillStyle = __config__.canvas.trams.color;
         PainterUtils.fillCircle(ctx, point.x, point.y, __config__.canvas.trams.radius);
         ctx.moveTo(point.x, point.y);
-
-        console.log('Painter >> tram painted: ' + tram);
     };
 
     self.repaint = function (trams) {

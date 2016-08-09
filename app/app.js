@@ -18,12 +18,20 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log('Init finished.');
 
     // TODO Dispacther
-    trams[0].moveNext();
-    trams[1].moveNext();
+    // trams[0].moveNext();
+    // trams[1].moveNext();
     trams[2].moveNext();
 
-    trams[0].moveNext();
-    trams[1].moveNext();
+    // trams[0].moveNext();
+    // trams[1].moveNext();
+    trams[2].moveNext();
+
+    // trams[0].moveNext();
+    // trams[1].moveNext();
+    trams[2].moveNext();
+
+    // trams[0].moveNext();
+    // trams[1].moveNext();
     trams[2].moveNext();
 
 });
