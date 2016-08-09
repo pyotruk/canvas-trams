@@ -15,7 +15,8 @@ var Route = function (id, nodes) {
     self.id = id;
     self.nodes = nodes;
 
-    var direction = -1;
+    var velocityDirection = -1;
+    var indexDirection = 1;
 
     self.toString = function () {
         return 'Route#' + self.id;
@@ -29,8 +30,8 @@ var Route = function (id, nodes) {
         return STEP;
     };
 
-    self.getDirection = function () {
-        return direction;
+    self.getVelocityDirection = function () {
+        return velocityDirection;
     };
 
     var adjustToEnd = function (currentPos) {
@@ -53,18 +54,19 @@ var Route = function (id, nodes) {
 
     self.move = function (currentPos) {
         var newPos = new Point(
-            currentPos.r + direction * STEP,
+            currentPos.r + velocityDirection * STEP,
             currentPos.fi
         );
         if (isOutside(newPos)) {
-            direction = -1 * direction;
+            velocityDirection = -1 * velocityDirection;
+            indexDirection = -1 * indexDirection;
             newPos = adjustToEnd(newPos);
-            console.log(self + ' >> END reached >> direction changed to [' + direction + '].');
+            console.log(self + ' >> END reached >> velocityDirection changed to [' + velocityDirection + '].');
         }
         if (PointUtils.isPole(newPos, EPS)) {
-            direction = -1 * direction;
+            velocityDirection = -1 * velocityDirection;
             newPos.handlePoleCross();
-            console.log(self + ' >> POLE reached >> direction changed to [' + direction + '].');
+            console.log(self + ' >> POLE reached >> velocityDirection changed to [' + velocityDirection + '].');
         }
         return newPos;
     };
@@ -84,12 +86,14 @@ var Route = function (id, nodes) {
     };
 
     self.findNextStop = function (currentPos) {
-        var currentStopIndex = PointUtils.findNearestLinePointIndex(currentPos, self.nodes);
+        var currentStopIndex = PointUtils.findNearestLinePointIndex(currentPos, self.nodes, EPS);
         if (currentStopIndex < 0) return null;
 
-        var nextStopPos = currentPos.clone();
-        nextStopPos.r += direction * 1; //TODO distance between stops
-        var nextStopIndex = PointUtils.findNearestLinePointIndex(nextStopPos, self.nodes);
+        var distanceBetweenStops = 1; // TODO to config.js
+        var nextStopIndex = currentStopIndex + indexDirection * distanceBetweenStops;
+
+        if (nextStopIndex < 0) nextStopIndex = 0;
+        if (nextStopIndex >= self.nodes.length) nextStopIndex = self.nodes.length - 1;
 
         return self.nodes[nextStopIndex];
     };

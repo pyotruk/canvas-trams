@@ -21,7 +21,6 @@ var Tram = function (tramData) {
 
     self.setFrozen = function (f) {
         frozen = f;
-        console.log(self + ' >>> FROZEN = ' + frozen);
     };
 
     self.move = function () {
@@ -31,7 +30,8 @@ var Tram = function (tramData) {
 
     self.isNextSemaphore = function () {
         var nextStop = self.route.findNextStop(self.currentPos);
-        return nextStop ? PointUtils.isPole(nextStop, EPS) : false;
+        if (!nextStop) throw new Error('Illegal state: next stop not found.');
+        return PointUtils.isPole(nextStop, EPS);
     };
 
     self.isStop = function () {

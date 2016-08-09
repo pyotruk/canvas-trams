@@ -114,6 +114,33 @@ describe('point-utils', function () {
             new Point(1, 0),
             eps
         )).toEqual(false);
-    })
+    });
+
+    it('Test findNearestLinePointIndex()', function () {
+        var eps = 0.01;
+        var nodes = [
+            {r: 1.0, fi: 5 / 3 * Math.PI},
+            {r: 0.0, fi: 0.0},
+            {r: 1.0, fi: 2 / 3 * Math.PI}
+        ];
+
+        expect(PointUtils.findNearestLinePointIndex(
+            {r: 1.0, fi: 2.0943951023931966},
+            nodes,
+            eps
+        )).toEqual(2);
+
+        expect(PointUtils.findNearestLinePointIndex(
+            {r: 0.1, fi: 2.0943951023931966},
+            nodes,
+            eps
+        )).toEqual(1);
+
+        expect(PointUtils.findNearestLinePointIndex(
+            {r: 0.6, fi: 2.0943951023931966},
+            nodes,
+            eps
+        )).toEqual(2);
+    });
 
 });

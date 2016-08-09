@@ -95,7 +95,7 @@ var PointUtils = {
         return point;
     },
 
-    findNearestLinePointIndex: function (pos, linePoints) {
+    findNearestLinePointIndex: function (pos, linePoints, eps) {
         var nearestIndex = -1;
         var minDist = 1e+6;
 
@@ -103,6 +103,13 @@ var PointUtils = {
             if (!linePoints.hasOwnProperty(i)) continue;
 
             var p = linePoints[i];
+
+            if (!PointUtils.isPole(p, eps)
+                && !PointUtils.isPole(pos, eps)
+                && (Math.abs(p.fi - pos.fi) > eps)) {
+                continue;
+            }
+
             var dist = Math.abs(p.r - pos.r);
             if (dist < minDist) {
                 minDist = dist;
