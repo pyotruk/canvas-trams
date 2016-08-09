@@ -41,15 +41,43 @@ var PointUtils = {
         if (polarPoint.r > eps) return polarPoint;
 
         if (Math.abs(polarPoint.r) <= eps) {
-            polarPoint.fi = 0;
             polarPoint.r = 0;
 
         } else if (polarPoint.r < 0) {
             polarPoint.r = Math.abs(polarPoint.r);
             polarPoint.fi += Math.PI;
-            polarPoint.fi = polarPoint.fi % (2 * Math.PI);
         }
+        
+        polarPoint.fi = polarPoint.fi % (2 * Math.PI);
 
         return polarPoint;
+    },
+
+    /**
+     * Checks if point near the pole.
+     * @param point [polar]
+     * @param eps
+     */
+    isPole: function (point, eps) {
+        return Math.abs(point.r) <= eps;
+    },
+
+    /**
+     * Checks if point belong to line excluding ends.
+     * It works for lines passed through pole only.
+     * @param point [polar]
+     * @param lineStart - point of line start [polar]
+     * @param lineEnd - point of line end [polar]
+     * @param eps
+     */
+    isPolarPointBelongsToLine: function (point, lineStart, lineEnd, eps) {
+        if (PointUtils.isPole(point, eps)) return true;
+
+        if (Math.abs(point.fi - lineStart.fi) <= eps) {
+            return point.r < lineStart.r;
+        } else if (Math.abs(point.fi - lineEnd.fi) <= eps) {
+            return point.r < lineEnd.r;
+        }
+        return false;
     }
 };

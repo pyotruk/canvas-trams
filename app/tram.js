@@ -19,7 +19,7 @@ var Tram = function (tramData, repaint) {
     self.moveNext = function () {
         var interval = setInterval(function () {
 
-            self.currentPos = self.route.getNextPoint(self.currentPos);
+            self.currentPos = self.route.move(self.currentPos);
             console.log(self + ' >> current pos ' + self.currentPos.toString());
 
             repaint();

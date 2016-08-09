@@ -9,10 +9,13 @@
 var Route = function (id, nodes) {
     var self = this;
 
-    const STEP = -0.1; // TODO calc next stop direction
+    const STEP = 0.1;
+    const EPS = __config__.point.equalsEps;
 
     self.id = id;
     self.nodes = nodes;
+
+    var direction = 1;
 
     self.toString = function () {
         return 'Route#' + self.id;
@@ -22,11 +25,39 @@ var Route = function (id, nodes) {
         return self.nodes[0];
     };
 
-    self.getNextPoint = function (currentPos) {
-        return new Point(
-            currentPos.r + STEP,
+    self.getStep = function () {
+        return STEP;
+    };
+
+    self.getDirection = function () {
+        return direction;
+    };
+
+    var isEnd = function (currentPos) {
+        return !PointUtils.isPolarPointBelongsToLine(
+            currentPos,
+            self.nodes[0],
+            self.nodes[self.nodes.length - 1],
+            EPS
+        );
+    };
+
+    self.move = function (currentPos) {
+        var newPos = new Point(
+            currentPos.r + direction * STEP,
             currentPos.fi
         );
+        if (isEnd(newPos)) {
+            direction = -1 * direction;
+            newPos = currentPos;
+            console.log(self + ' >> direction changed because isEnd.');
+        }
+        if (PointUtils.isPole(newPos, EPS)) {
+            direction = -1 * direction;
+            newPos.handlePoleCross();
+            console.log(self + ' >> direction changed because isPole.');
+        }
+        return newPos;
     };
 
     self.isStop = function (currentPos) {

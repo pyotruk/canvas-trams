@@ -21,4 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
     trams[0].moveNext();
     trams[1].moveNext();
     trams[2].moveNext();
+
+    trams[0].moveNext();
+    trams[1].moveNext();
+    trams[2].moveNext();
+
 });

@@ -13,6 +13,10 @@ var Point = function (r, fi) {
 
     PointUtils.normalizePolar(self, EPS);
 
+    self.clone = function () {
+        return new Point(self.r, self.fi);
+    };
+
     self.equals = function (point) {
         return PointUtils.arePointsEqual(self, point, EPS);
     };
@@ -26,4 +30,9 @@ var Point = function (r, fi) {
         canvasPoint = PointUtils.affine(canvasPoint, AFFINE_MATRIX);
         return canvasPoint;
     };
+    
+    self.handlePoleCross = function () {
+        self.fi += Math.PI;
+        PointUtils.normalizePolar(self);
+    }
 };

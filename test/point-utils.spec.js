@@ -57,6 +57,49 @@ describe('point-utils', function () {
         point = PointUtils.normalizePolar({r: -eps / 10, fi: 2 * Math.PI}, eps);
         expect(point.r).toEqual(0);
         expect(point.fi).toEqual(0);
+
+        point = PointUtils.normalizePolar({r: -eps / 10, fi: Math.PI}, eps);
+        expect(point.r).toEqual(0);
+        expect(point.fi).toEqual(Math.PI);
     });
+
+    it('Test isPolarPointBelongsToLine()', function () {
+        var eps = 0.01;
+
+        expect(PointUtils.isPolarPointBelongsToLine(
+            new Point(0.4, 0),
+            new Point(1, Math.PI),
+            new Point(1, 0),
+            eps
+        )).toEqual(true);
+
+        expect(PointUtils.isPolarPointBelongsToLine(
+            new Point(1, 0),
+            new Point(1, Math.PI),
+            new Point(1, 0),
+            eps
+        )).toEqual(false);
+
+        expect(PointUtils.isPolarPointBelongsToLine(
+            new Point(1, Math.PI),
+            new Point(1, Math.PI),
+            new Point(1, 0),
+            eps
+        )).toEqual(false);
+
+        expect(PointUtils.isPolarPointBelongsToLine(
+            new Point(0, 0),
+            new Point(1, Math.PI),
+            new Point(1, 0),
+            eps
+        )).toEqual(true);
+
+        expect(PointUtils.isPolarPointBelongsToLine(
+            new Point(0, 0),
+            new Point(1, 2 / 3 * Math.PI),
+            new Point(1, 5 / 3 * Math.PI),
+            eps
+        )).toEqual(true);
+    })
 
 });
