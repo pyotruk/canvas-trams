@@ -1,11 +1,9 @@
-var Tram = function (tramData, repaint) {
+var Tram = function (tramData) {
     var self = this;
-
-    const STEP = 100; // msec
 
     self.id = tramData.id;
     self.passengers = tramData.passengers;
-    
+
     self.route = new Route(self.id, tramData.route.map(function (point) {
         return new Point(point.r, point.fi);
     }));
@@ -16,19 +14,12 @@ var Tram = function (tramData, repaint) {
         return 'Tram#' + self.id + '{pos=' + self.currentPos + '}';
     };
 
-    self.moveNext = function () {
-        var interval = setInterval(function () {
+    self.move = function () {
+        self.currentPos = self.route.move(self.currentPos);
+        console.log(self + ' >> moved.');
 
-            self.currentPos = self.route.move(self.currentPos);
-            console.log(self + ' >> moved.');
-
-            repaint();
-
-            if (self.route.isStop(self.currentPos)) {
-                clearInterval(interval);
-                console.log(self + ' >> stopped at pos ' + self.currentPos.toString());
-            }
-
-        }, STEP);
+        if (self.route.isStop(self.currentPos)) {
+            console.log(self + ' >> STOP reached.');
+        }
     }
 };

@@ -49,12 +49,12 @@ var Route = function (id, nodes) {
         );
         if (isEnd(newPos)) {
             direction = -1 * direction;
-            console.log(self + ' >> direction changed because isEnd.');
+            console.log(self + ' >> END reached >> direction changed to [' + direction + '].');
         }
         if (PointUtils.isPole(newPos, EPS)) {
             direction = -1 * direction;
             newPos.handlePoleCross();
-            console.log(self + ' >> direction changed because isPole.');
+            console.log(self + ' >> POLE reached >> direction changed to [' + direction + '].');
         }
         return newPos;
     };
