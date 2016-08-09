@@ -38,7 +38,7 @@ var Painter = function (ctx) {
     var paintTram = function (tram) {
         var point = tram.currentPos.toCanvasCoordinates();
 
-        ctx.fillStyle = __config__.canvas.trams.color;
+        ctx.fillStyle = tram.color;
         PainterUtils.fillCircle(ctx, point.x, point.y, __config__.canvas.trams.radius);
         ctx.moveTo(point.x, point.y);
     };

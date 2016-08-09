@@ -1,7 +1,8 @@
 var __config__ = {
     trams: [
         {
-            id: 1,
+            id: 'GREEN',
+            color: '#009933',
             passengers: 42,
             route: [
                 {r: 2.0, fi: Math.PI},
@@ -12,7 +13,8 @@ var __config__ = {
             ]
         },
         {
-            id: 2,
+            id: 'YELLOW',
+            color: '#ffcc00',
             passengers: 42,
             route: [
                 {r: 1.0, fi: 4 / 3 * Math.PI},
@@ -22,7 +24,8 @@ var __config__ = {
             ]
         },
         {
-            id: 3,
+            id: 'RED',
+            color: '#cc0000',
             passengers: 42,
             route: [
                 {r: 1.0, fi: 5 / 3 * Math.PI},
@@ -46,8 +49,7 @@ var __config__ = {
             color: "#333"
         },
         trams: {
-            radius: 10,
-            color: "#ff3333"
+            radius: 10
         }
     },
     point: {

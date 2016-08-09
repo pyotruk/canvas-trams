@@ -2,6 +2,7 @@ var Tram = function (tramData) {
     var self = this;
 
     self.id = tramData.id;
+    self.color = tramData.color;
     self.passengers = tramData.passengers;
 
     self.route = new Route(self.id, tramData.route.map(function (point) {
