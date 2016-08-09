@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log('Init finished.');
 
     setInterval(function () {
-        [trams[2]].forEach(function (tram) {
+        trams.forEach(function (tram) {
             tram.move();
         });
         painter.repaint(trams);

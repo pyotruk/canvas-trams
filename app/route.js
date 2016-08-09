@@ -33,7 +33,16 @@ var Route = function (id, nodes) {
         return direction;
     };
 
-    var isEnd = function (currentPos) {
+    var adjustToEnd = function (currentPos) {
+        return PointUtils.adjustToNearestEndOfLine(
+            currentPos,
+            self.nodes[0],
+            self.nodes[self.nodes.length - 1],
+            EPS
+        );
+    };
+
+    var isOutside = function (currentPos) {
         return !PointUtils.isPolarPointBelongsToLine(
             currentPos,
             self.nodes[0],
@@ -47,8 +56,9 @@ var Route = function (id, nodes) {
             currentPos.r + direction * STEP,
             currentPos.fi
         );
-        if (isEnd(newPos)) {
+        if (isOutside(newPos)) {
             direction = -1 * direction;
+            newPos = adjustToEnd(newPos);
             console.log(self + ' >> END reached >> direction changed to [' + direction + '].');
         }
         if (PointUtils.isPole(newPos, EPS)) {

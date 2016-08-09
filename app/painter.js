@@ -21,6 +21,8 @@ var Painter = function (ctx) {
         var point = route.nodes[0].toCanvasCoordinates();
         ctx.moveTo(point.x, point.y);
 
+        ctx.beginPath();
+
         for (var i in route.nodes) {
             if (!route.nodes.hasOwnProperty(i)) continue;
 
@@ -29,6 +31,8 @@ var Painter = function (ctx) {
             paintEdge(point);
             paintNode(point);
         }
+
+        ctx.closePath();
     };
 
     var paintTram = function (tram) {

@@ -19,7 +19,7 @@ describe('route', function () {
 
         newPos = route.move(new Point(2, 0));
         expect(route.getDirection()).toEqual(1);
-        expect(newPos.r).toEqual(2 - route.getStep());
+        expect(newPos.r).toEqual(1);
         expect(newPos.fi).toEqual(0);
 
         newPos = route.move(new Point(0.5, 0));

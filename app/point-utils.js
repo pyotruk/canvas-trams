@@ -81,5 +81,17 @@ var PointUtils = {
             return point.r <= lineEnd.r;
         }
         return false;
+    },
+
+    /**
+     * Sets point position to the nearest end (or start) of the line.
+     */
+    adjustToNearestEndOfLine: function (point, lineStart, lineEnd, eps) {
+        if (Math.abs(point.fi - lineStart.fi) <= eps) {
+            point.r = lineStart.r;
+        } else if (Math.abs(point.fi - lineEnd.fi) <= eps) {
+            point.r = lineEnd.r;
+        }
+        return point;
     }
 };
