@@ -93,5 +93,22 @@ var PointUtils = {
             point.r = lineEnd.r;
         }
         return point;
+    },
+
+    findNearestLinePointIndex: function (pos, linePoints) {
+        var nearestIndex = -1;
+        var minDist = 1e+6;
+
+        for (var i in linePoints) {
+            if (!linePoints.hasOwnProperty(i)) continue;
+
+            var p = linePoints[i];
+            var dist = Math.abs(p.r - pos.r);
+            if (dist < minDist) {
+                minDist = dist;
+                nearestIndex = i;
+            }
+        }
+        return parseInt(nearestIndex);
     }
 };

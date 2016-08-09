@@ -15,7 +15,7 @@ var __config__ = {
         {
             id: 'YELLOW',
             color: '#ffcc00',
-            passengers: 42,
+            passengers: 16,
             route: [
                 {r: 1.0, fi: 4 / 3 * Math.PI},
                 {r: 0.0, fi: 0.0},
@@ -26,7 +26,7 @@ var __config__ = {
         {
             id: 'RED',
             color: '#cc0000',
-            passengers: 42,
+            passengers: 32,
             route: [
                 {r: 1.0, fi: 5 / 3 * Math.PI},
                 {r: 0.0, fi: 0.0},

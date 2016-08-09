@@ -69,13 +69,29 @@ var Route = function (id, nodes) {
         return newPos;
     };
 
+    /**
+     * @param currentPos
+     * @returns number - current stop`s index or -1 if we have not yet reached the stop
+     */
     self.isStop = function (currentPos) {
         for (var i in self.nodes) {
             if (self.nodes.hasOwnProperty(i) &&
                 self.nodes[i].equals(currentPos)) {
-                return true;
+                return parseInt(i);
             }
         }
-        return false;
-    }
+        return -1;
+    };
+
+    self.findNextStop = function (currentPos) {
+        var currentStopIndex = PointUtils.findNearestLinePointIndex(currentPos, self.nodes);
+        if (currentStopIndex < 0) return null;
+
+        var nextStopPos = currentPos.clone();
+        nextStopPos.r += direction * 1; //TODO distance between stops
+        var nextStopIndex = PointUtils.findNearestLinePointIndex(nextStopPos, self.nodes);
+
+        return self.nodes[nextStopIndex];
+    };
+
 };
