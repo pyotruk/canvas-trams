@@ -35,7 +35,7 @@ var __config__ = {
         }
     ],
     canvas: {
-        fps: 10,
+        fps: 20,
         size: {
             w: 500,
             h: 500
@@ -60,6 +60,6 @@ var __config__ = {
     },
     point: {
         equalsEps: 0.01,
-        step: 0.1
+        step: 0.05
     }
 };
