@@ -38,6 +38,16 @@ var Tram = function (tramData) {
         return PointUtils.isPole(nextStop, EPS);
     };
 
+    self.isPrevSemaphore = function () {
+        var prevStop = self.route.findPrevStop(self.currentPos);
+        if (!prevStop) throw new Error('Illegal state: prev stop not found.');
+        return PointUtils.isPole(prevStop, EPS);
+    };
+
+    self.isNearSemaphore = function () {
+        return self.route.isNearPole(self.currentPos);
+    };
+
     self.isStop = function () {
         var stopIndex = self.route.currentStopIndex(self.currentPos);
         if (stopIndex > -1) {

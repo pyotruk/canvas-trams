@@ -97,4 +97,23 @@ var Route = function (id, nodes) {
         return self.nodes[nextStopIndex];
     };
 
+    self.findPrevStop = function (currentPos) {
+        var currentStopIndex = PointUtils.findNearestLinePointIndex(currentPos, self.nodes, EPS);
+        if (currentStopIndex < 0) return null;
+
+        var prevStopIndex = currentStopIndex - indexDirection;
+
+        if (prevStopIndex < 0) prevStopIndex = 0;
+        if (prevStopIndex >= self.nodes.length) prevStopIndex = self.nodes.length - 1;
+
+        return self.nodes[prevStopIndex];
+    };
+
+    self.isNearPole = function (currentPos) {
+        var currentStopIndex = PointUtils.findNearestLinePointIndex(currentPos, self.nodes, EPS);
+        if (currentStopIndex < 0) return false;
+
+        return PointUtils.isPole(self.nodes[currentStopIndex], EPS);
+    }
+
 };

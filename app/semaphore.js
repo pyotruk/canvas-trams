@@ -20,7 +20,7 @@ var Semaphore = function () {
     var findConcurrentTrams = function (trams) {
         var concurrentTrams = [];
         trams.forEach(function (tram) {
-            if (tram.isNextSemaphore()) {
+            if (tram.isNextSemaphore() || tram.isPrevSemaphore() || tram.isNearSemaphore()) {
                 concurrentTrams.push(tram);
             }
         });
@@ -29,7 +29,7 @@ var Semaphore = function () {
 
     var freezeTrams = function (trams, mostLoadedTramId) {
         trams.forEach(function (tram) {
-            if (tram.isStop()) {
+            if (tram.isStop() && !tram.isNearSemaphore()) {
                 tram.setFrozen(tram.id !== mostLoadedTramId);
             }
         });
@@ -37,7 +37,7 @@ var Semaphore = function () {
 
     var unfreezeTrams = function (trams) {
         trams.forEach(function (tram) {
-            if (tram.isStop()) {
+            if (tram.isStop() && !tram.isNearSemaphore()) {
                 tram.setFrozen(false);
             }
         });

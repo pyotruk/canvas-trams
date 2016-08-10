@@ -67,6 +67,26 @@ describe('route', function () {
         expect(nextStop.fi).toEqual(0);
     });
 
+    it('Test findPrevStop()', function () {
+        var route = new Route(42, [
+            new Point(1, Math.PI),
+            new Point(0, 0),
+            new Point(1, 0)
+        ]);
+
+        var prevStop = route.findPrevStop(new Point(1, Math.PI));
+        expect(prevStop.r).toEqual(1);
+        expect(prevStop.fi).toEqual(Math.PI);
+
+        prevStop = route.findPrevStop(new Point(0.6, 0));
+        expect(prevStop.r).toEqual(0);
+        expect(prevStop.fi).toEqual(0);
+
+        prevStop = route.findPrevStop(new Point(0, 0));
+        expect(prevStop.r).toEqual(1);
+        expect(prevStop.fi).toEqual(Math.PI);
+    });
+
     it('Test currentStopIndex()', function () {
         var route = new Route(42, [
             new Point(1, Math.PI),
