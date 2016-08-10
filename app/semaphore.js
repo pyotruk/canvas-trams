@@ -29,7 +29,7 @@ var Semaphore = function () {
 
     var freezeTrams = function (trams, mostLoadedTramId) {
         trams.forEach(function (tram) {
-            if (tram.isStop() && !tram.isNearSemaphore()) {
+            if (tram.isStop() && !tram.isNearSemaphore() && !tram.isPrevSemaphore()) {
                 tram.setFrozen(tram.id !== mostLoadedTramId);
             }
         });
