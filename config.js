@@ -35,6 +35,7 @@ var __config__ = {
         }
     ],
     canvas: {
+        fps: 10,
         size: {
             w: 500,
             h: 500
@@ -53,7 +54,8 @@ var __config__ = {
             color: "#333"
         },
         trams: {
-            radius: 10
+            radius: 10,
+            frozenColor: '#3399ff'
         }
     },
     point: {

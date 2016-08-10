@@ -1,20 +1,20 @@
 var Semaphore = function () {
     var self = this;
 
-    self.mostLoadedTramId = null;
+    self.currentTram = null;
 
-    var findMostLoadedTramId = function (trams) {
+    var findMostLoadedTram = function (trams) {
         var maxPassengers = 0;
-        var mostLoadedTramId = null;
+        var mostLoadedTram = null;
 
         trams.forEach(function (tram) {
             if (tram.passengers > maxPassengers) {
                 maxPassengers = tram.passengers;
-                mostLoadedTramId = tram.id;
+                mostLoadedTram = tram;
             }
         });
 
-        return mostLoadedTramId;
+        return mostLoadedTram;
     };
 
     var findConcurrentTrams = function (trams) {
@@ -47,11 +47,12 @@ var Semaphore = function () {
         var concurrentTrams = findConcurrentTrams(trams);
         if (concurrentTrams.length <= 1) {
             unfreezeTrams(trams);
+            self.currentTram = null;
             return;
         }
 
-        self.mostLoadedTramId = findMostLoadedTramId(concurrentTrams);
+        self.currentTram = findMostLoadedTram(concurrentTrams);
 
-        freezeTrams(concurrentTrams, self.mostLoadedTramId);
+        freezeTrams(concurrentTrams, self.currentTram.id);
     }
 };

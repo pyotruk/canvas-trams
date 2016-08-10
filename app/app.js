@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    const ANIMATION_STEP = Math.round(1000 / __config__.canvas.fps);
+
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
 
@@ -14,11 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log('Init finished.');
 
     setInterval(function () {
+
         semaphore.checkTrams(trams);
         trams.forEach(function (tram) {
             tram.move();
         });
         painter.repaint(trams);
-    }, 100);
+        painter.paintSemaphore(semaphore);
+
+    }, ANIMATION_STEP);
 
 });

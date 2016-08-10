@@ -23,6 +23,10 @@ var Tram = function (tramData) {
         frozen = f;
     };
 
+    self.isFrozen = function () {
+        return frozen;
+    };
+
     self.move = function () {
         if (frozen) return;
         self.currentPos = self.route.move(self.currentPos);

@@ -39,7 +39,7 @@ var Painter = function (ctx) {
     var paintTram = function (tram) {
         var point = tram.currentPos.toCanvasCoordinates();
 
-        ctx.fillStyle = tram.color;
+        ctx.fillStyle = tram.isFrozen() ? __config__.canvas.trams.frozenColor : tram.color;
         PainterUtils.fillCircle(ctx, point.x, point.y, __config__.canvas.trams.radius);
         ctx.moveTo(point.x, point.y);
     };
@@ -55,4 +55,11 @@ var Painter = function (ctx) {
             paintTram(tram);
         }
     };
+
+    self.paintSemaphore = function (semaphore) {
+        var point = new Point(0, 0).toCanvasCoordinates();
+        ctx.fillStyle = semaphore.currentTram ? semaphore.currentTram.color : __config__.canvas.stops.color;
+        PainterUtils.fillCircle(ctx, point.x, point.y, __config__.canvas.stops.radius);
+        ctx.moveTo(point.x, point.y);
+    }
 };
