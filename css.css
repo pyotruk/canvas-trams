@@ -6,10 +6,11 @@
 
 #canvas {
     border: 1px solid black;
+    float: left;
+    margin-right: 2em;
 }
 
-#controls {
-    float: right;
+#right {
 }
 
 canvas {
@@ -19,4 +20,16 @@ canvas {
     image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
     image-rendering: pixelated;                 /* Awesome future-browsers       */
     -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+}
+
+#controls > div {
+    margin-bottom: 0.5em;
+}
+#controls > div label, #legend label {
+    display: inline-block;
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 12px;
+    margin-right: 0.25em;
+    vertical-align: middle;
 }

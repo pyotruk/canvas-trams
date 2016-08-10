@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return new Tram(tram);
     });
 
+    new Controls(trams, 'controls');
+
     painter.repaint(trams);
     console.log('Init finished.');
 
