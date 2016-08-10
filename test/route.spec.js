@@ -87,6 +87,22 @@ describe('route', function () {
         expect(prevStop.fi).toEqual(Math.PI);
     });
 
+    it('Test isNearPole()', function () {
+        var route = new Route(42, [
+            new Point(1, Math.PI),
+            new Point(0, 0),
+            new Point(1, 0)
+        ]);
+
+        expect(route.isNearPole(new Point(1, Math.PI))).toEqual(false);
+        expect(route.isNearPole(new Point(0.9, Math.PI))).toEqual(false);
+        expect(route.isNearPole(new Point(0.4, Math.PI))).toEqual(true);
+        expect(route.isNearPole(new Point(0, 0))).toEqual(true);
+        expect(route.isNearPole(new Point(0.2, 0))).toEqual(true);
+        expect(route.isNearPole(new Point(0.6, 0))).toEqual(false);
+        expect(route.isNearPole(new Point(1, 0))).toEqual(false);
+    });
+
     it('Test currentStopIndex()', function () {
         var route = new Route(42, [
             new Point(1, Math.PI),
