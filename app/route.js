@@ -75,7 +75,7 @@ var Route = function (id, nodes) {
      * @param currentPos
      * @returns number - current stop`s index or -1 if we have not yet reached the stop
      */
-    self.isStop = function (currentPos) {
+    self.currentStopIndex = function (currentPos) {
         for (var i in self.nodes) {
             if (self.nodes.hasOwnProperty(i) &&
                 self.nodes[i].equals(currentPos)) {

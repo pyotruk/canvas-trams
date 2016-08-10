@@ -67,23 +67,23 @@ describe('route', function () {
         expect(nextStop.fi).toEqual(0);
     });
 
-    it('Test isStop()', function () {
+    it('Test currentStopIndex()', function () {
         var route = new Route(42, [
             new Point(1, Math.PI),
             new Point(0, 0),
             new Point(1, 0)
         ]);
 
-        var stopIndex = route.isStop(new Point(1, Math.PI));
+        var stopIndex = route.currentStopIndex(new Point(1, Math.PI));
         expect(stopIndex).toEqual(0);
 
-        stopIndex = route.isStop(new Point(0.9, Math.PI));
+        stopIndex = route.currentStopIndex(new Point(0.9, Math.PI));
         expect(stopIndex).toEqual(-1);
 
-        stopIndex = route.isStop(new Point(0, 0));
+        stopIndex = route.currentStopIndex(new Point(0, 0));
         expect(stopIndex).toEqual(1);
 
-        stopIndex = route.isStop(new Point(1, 0));
+        stopIndex = route.currentStopIndex(new Point(1, 0));
         expect(stopIndex).toEqual(2);
     })
 

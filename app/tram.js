@@ -39,7 +39,7 @@ var Tram = function (tramData) {
     };
 
     self.isStop = function () {
-        var stopIndex = self.route.isStop(self.currentPos);
+        var stopIndex = self.route.currentStopIndex(self.currentPos);
         if (stopIndex > -1) {
             console.log(self + ' >> STOP reached.');
             return true;
