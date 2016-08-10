@@ -8,6 +8,6 @@ var PainterUtils = {
     },
 
     clearAll: function (ctx, w, h) {
-        ctx.clearRect(0, 0, 500, 500);
+        ctx.clearRect(0, 0, w, h);
     }
 };

@@ -1,6 +1,7 @@
 var Painter = function (ctx) {
     var self = this;
 
+    const CANVAS_SIZE = __config__.canvas.size;
     var currentPos = __config__.canvas.center;
 
     ctx.moveTo(currentPos.x, currentPos.y);
@@ -44,7 +45,7 @@ var Painter = function (ctx) {
     };
 
     self.repaint = function (trams) {
-        PainterUtils.clearAll(ctx);
+        PainterUtils.clearAll(ctx, CANVAS_SIZE.w, CANVAS_SIZE.h);
 
         for (var i in trams) {
             if (!trams.hasOwnProperty(i)) continue;

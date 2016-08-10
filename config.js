@@ -35,15 +35,19 @@ var __config__ = {
         }
     ],
     canvas: {
+        size: {
+            w: 500,
+            h: 500
+        },
+        center: {
+            x: 250,
+            y: 250
+        },
         affineMatrix: [
             [250 / 2 - 10, 0, 250],
             [0, -250 / 2 - 10, 250],
             [0, 0, 1]
         ],
-        center: {
-            x: 250,
-            y: 250
-        },
         stops: {
             radius: 6,
             color: "#333"
@@ -53,6 +57,7 @@ var __config__ = {
         }
     },
     point: {
-        equalsEps: 0.01
+        equalsEps: 0.01,
+        step: 0.1
     }
 };

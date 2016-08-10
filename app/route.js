@@ -9,14 +9,14 @@
 var Route = function (id, nodes) {
     var self = this;
 
-    const STEP = 0.1;
+    const STEP = __config__.point.step;
     const EPS = __config__.point.equalsEps;
 
     self.id = id;
     self.nodes = nodes;
 
-    var velocityDirection = -1;
-    var indexDirection = 1;
+    var velocityDirection = -1; // direction of changing R-coordinate (velocity sign)
+    var indexDirection = 1; // direction of changing current stop index in node list
 
     self.toString = function () {
         return 'Route#' + self.id;
@@ -89,8 +89,7 @@ var Route = function (id, nodes) {
         var currentStopIndex = PointUtils.findNearestLinePointIndex(currentPos, self.nodes, EPS);
         if (currentStopIndex < 0) return null;
 
-        var distanceBetweenStops = 1; // TODO to config.js
-        var nextStopIndex = currentStopIndex + indexDirection * distanceBetweenStops;
+        var nextStopIndex = currentStopIndex + indexDirection;
 
         if (nextStopIndex < 0) nextStopIndex = 0;
         if (nextStopIndex >= self.nodes.length) nextStopIndex = self.nodes.length - 1;
