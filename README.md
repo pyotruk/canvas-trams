@@ -5,9 +5,10 @@ Trams pass through crossroad depending on its priority. Tram`s priority defined 
 
 ### How to run
 1. `nvm install 11`
-2. `npm i -g gulp-cli`
-3. `gulp`
-4. open `index.html` in browser
+1. `npm i -g gulp-cli`
+1. `npm i`
+1. `gulp`
+1. open `index.html` in browser
 
 ### TODO
 * Try WebWorkers (BUT they don't have thread priority API).
